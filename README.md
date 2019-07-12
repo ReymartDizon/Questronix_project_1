@@ -18,7 +18,7 @@ Instruction:
 
 3)	To run the project open your Terminal and change-directory(cd) to Questronix_project_1 .
 		---- cd Questronix_project_1/
-	Run the app.js file using node...  type in terminal: 'node app.js'.
+	run the app.js file using node...  type in terminal: 'node app.js'.
 		---- node app.js
 	it will give a server of (http://127.0.0.1:3000).
 
