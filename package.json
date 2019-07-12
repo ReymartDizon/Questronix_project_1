@@ -1,8 +1,8 @@
 {
   "name": "Questronix Assignment",
   "version": "1.0.0",
-  "description": "Create a simple CRUD website using Mysql,EJS,Express,RESTful",
-  "main": "index.js",
+  "description": "Create a simple CRUD website using Nodejs, Mysql, EJS, Express, RESTful",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
