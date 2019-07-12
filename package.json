@@ -1,7 +1,7 @@
 {
   "name": "questroponix",
   "version": "1.0.0",
-  "description": "Create a simple CRUD website using Mysql,EJS,Express,RESTful",
+  "description": "Create a simple CRUD website using Nodejs, Mysql, EJS, Express, RESTful",
   "main": "app.js",
   "dependencies": {
     "bluebird": "^3.5.5",
