@@ -1,5 +1,4 @@
-Questronix_project_1
-Create a simple CRUD website using Mysql,EJS,Express,RESTful
+"Create a simple CRUD website using Nodejs, Mysql, EJS, Express, RESTful"
 
 Instruction:
 
