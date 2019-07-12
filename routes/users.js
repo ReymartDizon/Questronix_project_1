@@ -1,7 +1,7 @@
 var express = require('express')
 var app = express()
 
-// SHOW LIST OF USERS
+// SHOW LIST OF ITEMS
 app.get('/', function(req, res, next) {
 	req.getConnection(function(error, conn) {
 		conn.query('SELECT * FROM items ORDER BY id DESC',function(err, rows, fields) {
@@ -23,7 +23,7 @@ app.get('/', function(req, res, next) {
 	})
 })
 
-// SHOW ADD USER FORM
+// SHOW ADD ITEMS FORM
 app.get('/add', function(req, res, next){	
 	// render to views/items/add.ejs
 	res.render('items/add', {
@@ -34,7 +34,7 @@ app.get('/add', function(req, res, next){
 	})
 })
 
-// ADD NEW ITEM POST ACTION
+// ADD NEW ITEMS POST ACTION
 app.post('/add', function(req, res, next){	
 	req.assert('name', 'Name is required').notEmpty()           //Validate name
 	req.assert('qty', 'Age is required').notEmpty()             //Validate qty
@@ -58,7 +58,7 @@ app.post('/add', function(req, res, next){
 					
 					// render to views/items/add.ejs
 					res.render('items/add', {
-						title: 'Add New User',
+						title: 'Add New Item',
 						name: items.name,
 						qty: items.qty,
 						amount: items.amount					
@@ -68,7 +68,7 @@ app.post('/add', function(req, res, next){
 					
 					// render to views/items/add.ejs
 					res.render('items/add', {
-						title: 'Add New User',
+						title: 'Add New Item',
 						name: '',
 						qty: '',
 						amount: ''					
@@ -89,7 +89,7 @@ app.post('/add', function(req, res, next){
 		 * because req.param('name') is deprecated
 		 */ 
         res.render('items/add', { 
-            title: 'Add New User',
+            title: 'Add New Item',
             name: req.body.name,
             qty: req.body.qty,
             amount: req.body.amount
@@ -97,7 +97,7 @@ app.post('/add', function(req, res, next){
     }
 })
 
-// SHOW EDIT USER FORM
+// SHOW EDIT ITEMS FORM
 app.get('/edit/(:id)', function(req, res, next){
 	req.getConnection(function(error, conn) {
 		conn.query('SELECT * FROM items WHERE id = ?', [req.params.id], function(err, rows, fields) {
@@ -105,13 +105,13 @@ app.get('/edit/(:id)', function(req, res, next){
 			
 			// if items not found
 			if (rows.length <= 0) {
-				req.flash('error', 'User not found with id = ' + req.params.id)
+				req.flash('error', 'Item not found with id = ' + req.params.id)
 				res.redirect('/items')
 			}
 			else { // if items found
 				// render to views/items/edit.ejs template file
 				res.render('items/edit', {
-					title: 'Edit User', 
+					title: 'Edit Item', 
 					//data: rows[0],
 					id: rows[0].id,
 					name: rows[0].name,
@@ -123,7 +123,7 @@ app.get('/edit/(:id)', function(req, res, next){
 	})
 })
 
-// EDIT USER POST ACTION
+// EDIT ITEMS POST ACTION
 app.put('/edit/(:id)', function(req, res, next) {
 	req.assert('name', 'Name is required').notEmpty()           //Validate name
 	req.assert('qty', 'Age is required').notEmpty()             //Validate qty
@@ -147,7 +147,7 @@ app.put('/edit/(:id)', function(req, res, next) {
 					
 					// render to views/items/add.ejs
 					res.render('items/edit', {
-						title: 'Edit User',
+						title: 'Edit Item',
 						id: req.params.id,
 						name: req.body.name,
 						qty: req.body.qty,
@@ -158,7 +158,7 @@ app.put('/edit/(:id)', function(req, res, next) {
 					
 					// render to views/items/add.ejs
 					res.render('items/edit', {
-						title: 'Edit User',
+						title: 'Edit Item',
 						id: req.params.id,
 						name: req.body.name,
 						qty: req.body.qty,
@@ -180,7 +180,7 @@ app.put('/edit/(:id)', function(req, res, next) {
 		 * because req.param('name') is deprecated
 		 */ 
         res.render('items/edit', { 
-            title: 'Edit User',            
+            title: 'Edit Item',            
 			id: req.params.id, 
 			name: req.body.name,
 			qty: req.body.qty,
@@ -189,7 +189,7 @@ app.put('/edit/(:id)', function(req, res, next) {
     }
 })
 
-// DELETE USER
+// DELETE ITEM
 app.delete('/delete/(:id)', function(req, res, next) {
 	var items = { id: req.params.id }
 	
@@ -198,11 +198,11 @@ app.delete('/delete/(:id)', function(req, res, next) {
 			//if(err) throw err
 			if (err) {
 				req.flash('error', err)
-				// redirect to users list page
+				// redirect to Items list page
 				res.redirect('/items')
 			} else {
-				req.flash('success', 'User deleted successfully! id = ' + req.params.id)
-				// redirect to users list page
+				req.flash('success', 'Item deleted successfully! id = ' + req.params.id)
+				// redirect to Items list page
 				res.redirect('/items')
 			}
 		})
