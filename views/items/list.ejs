@@ -1,0 +1,52 @@
+<!--
+including header content which is common for all pages
+-->
+<%- include ../layouts/header.ejs %>
+
+<% if (messages.error) { %>
+	<p style="color:red"><%- messages.error %></p>
+<% } %>
+
+<% if (messages.success) { %>
+	<p style="color:green"><%- messages.success %></p>
+<% } %>	
+
+<table width='80%' border=0>
+
+	<tr style='text-align:left; background-color:#CCC'>
+		<th>Name</th>
+		<th>Quantity</th>
+		<th>Amount</th>
+		<th>Action</th>
+	</tr>
+	
+	<!--
+		Using FOREACH LOOP for the items array
+		
+		myArray.forEach(function(el, index) {
+			// el - current element, i - index
+		});
+	-->
+	
+	<% if (data) { %>
+	<% data.forEach(function(items){ %>
+		<tr>
+			<td><%= items.name %></td>
+			<td><%= items.qty %></td>
+			<td><%= items.amount %></td>
+			<td>
+				<div style="float:left">
+					<a href='/items/edit/<%= items.id %>'>Edit</a> &nbsp;							
+					<form method="post" action="/items/delete/<%= items.id %>" style="float:right">
+						<input type="submit" name="delete" value='Delete' onClick="return confirm('Are you sure you want to delete?')" />
+						<input type="hidden" name="_method" value="DELETE" />
+					</form>
+				</div>
+			</td>
+		</tr>
+	<% }) %>
+	<% } %>
+
+</table>
+
+<%- include ../layouts/footer.ejs %>
