@@ -2,8 +2,8 @@ var config = {
 	database: {
 		host:	  'localhost', 	// database host
 		user: 	  'root', 		// your database username
-		password: 'password', 		// your database password
-		port: 	  3306, 		// default MySQL port
+		password: 'root', 		// your database password
+		port: 	  8889, 		// default MySQL port
 		db: 	  'inventory' 		// your database name
 	},
 	server: {
